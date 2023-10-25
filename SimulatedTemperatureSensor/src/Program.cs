@@ -15,6 +15,7 @@ namespace SimulatedTemperatureSensor
     using Microsoft.Azure.Devices.Edge.Util.TransientFaultHandling;
     using Microsoft.Azure.Devices.Edge.Util.Concurrency;
     using Microsoft.Azure.Devices.Edge.Util;
+    using System.Diagnostics;
 
     class Program
     {
@@ -48,6 +49,7 @@ namespace SimulatedTemperatureSensor
 
         static async Task<int> MainAsync()
         {
+            //Trace.Listeners.Add(new ConsoleTraceListener());
             Console.WriteLine("SimulatedTemperatureSensor Main() started.");
 
             IConfiguration configuration = new ConfigurationBuilder()

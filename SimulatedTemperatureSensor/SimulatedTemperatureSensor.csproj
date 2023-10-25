@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.E4K.IoTHubClient" Version="0.7.22-alpha" />
+    <PackageReference Include="Microsoft.Azure.E4K.IoTHubClient" Version="0.7.5-alpha" />
     <!--
       We have a transitive dependency on System.Net.Http via Microsoft.Azure.Devices.Client.
       Use explicit references here to override the version to fix a vulnerability. See

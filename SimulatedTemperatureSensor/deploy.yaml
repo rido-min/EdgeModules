@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sim-temp-sensor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sim-temp-sensor
+  template:
+    metadata:
+      labels:
+        app: sim-temp-sensor
+    spec:
+      containers:
+      - name: sim-temp-sensor
+        image: k3d-registry.localhost:5500/simulatedtemperaturesensor:0.1.1
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: mqtt-client-token
+          mountPath: /var/run/secrets/tokens
+        - name: ca
+          mountPath: /certs/ca.pem 
+          subPath: ca.pem
+        env:
+        - name: IOTEDGE_IOTHUBHOSTNAME
+          value: iotmq-bb.azure-devices.net
+        - name: IOTEDGE_DEVICEID
+          value: expert-parakeet
+        - name: IOTEDGE_MODULEID
+          value: SimulatedTemperatureSensor
+        - name: AZEDGE_MQTT_GATEWAY_HOST_NAME
+          value: aio-mq-dmqtt-frontend
+        - name: AZEDGE_MQTT_GATEWAY_CA_FILE
+          value: /certs/ca.pem
+      volumes:
+      - name: mqtt-client-token
+        projected:
+          sources:
+          - serviceAccountToken:
+              path: mqtt-client-token
+              audience: aio-mq-modules
+      - name: ca 
+        configMap:
+          name: azedge-broker-ca
+          items:
+            - key: ca.pem 
+              path: ca.pem
