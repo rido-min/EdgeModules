@@ -5,7 +5,7 @@
     "version": "0.1.1",
     "configurations": [
         {
-            "name": ".NET sim temp s",
+            "name": "SimulatedTemperatureSensor",
             "type": "coreclr",
             "request": "launch",
             "program": "${workspaceFolder}/SimulatedTemperatureSensor/bin/Debug/net7.0/SimulatedTemperatureSensor",
@@ -13,7 +13,7 @@
             "cwd": "${workspaceFolder}/SimulatedTemperatureSensor",
             "stopAtEntry": false,
             "console": "internalConsole",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/SimulatedTemperatureSensor/.env"
         }
 
     ]
