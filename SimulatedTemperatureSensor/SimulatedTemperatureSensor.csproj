@@ -1,9 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  
-  
   <PropertyGroup>
-	  <TargetFramework>net8.0</TargetFramework>
+	  <TargetFramework>net7.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <Configurations>Debug;Release;CheckInBuild</Configurations>
@@ -21,7 +18,8 @@
       Use explicit references here to override the version to fix a vulnerability. See
       https://github.com/advisories/GHSA-7jgj-8wvc-jh57.
     -->
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.*-*" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.*" />
+    <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.*" />
   </ItemGroup>
 
   <ItemGroup>
