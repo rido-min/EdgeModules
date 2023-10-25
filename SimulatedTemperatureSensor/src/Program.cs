@@ -7,9 +7,8 @@ namespace SimulatedTemperatureSensor
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Devices.Client;
-    using Microsoft.Azure.Devices.Client.Transport.Mqtt;
-    using Microsoft.Azure.Devices.Shared;
+    using Microsoft.Azure.E4K.IoTHubClient;
+    using Microsoft.Azure.E4K.IoTHubClient.Transport.Mqtt;
     using Microsoft.Extensions.Configuration;
     using Newtonsoft.Json;
     using ExponentialBackoff = Microsoft.Azure.Devices.Edge.Util.TransientFaultHandling.ExponentialBackoff;
@@ -74,7 +73,7 @@ namespace SimulatedTemperatureSensor
                 + $"messages, at an interval of {messageDelay.TotalSeconds} seconds.\n"
                 + $"To change this, set the environment variable {MessageCountConfigKey} to the number of messages that should be sent (set it to -1 to send unlimited messages).");
 
-            TransportType transportType = configuration.GetValue("ClientTransportType", TransportType.Amqp_Tcp_Only);
+            TransportType transportType = configuration.GetValue("ClientTransportType", TransportType.Mqtt);
 
             ModuleClient moduleClient = await CreateModuleClientAsync(
                 transportType,
@@ -281,12 +280,12 @@ namespace SimulatedTemperatureSensor
                             case TransportType.Mqtt:
                             case TransportType.Mqtt_Tcp_Only:
                                 return new ITransportSettings[] { new MqttTransportSettings(TransportType.Mqtt_Tcp_Only) };
-                            case TransportType.Mqtt_WebSocket_Only:
-                                return new ITransportSettings[] { new MqttTransportSettings(TransportType.Mqtt_WebSocket_Only) };
-                            case TransportType.Amqp_WebSocket_Only:
-                                return new ITransportSettings[] { new AmqpTransportSettings(TransportType.Amqp_WebSocket_Only) };
+                            //case TransportType.Mqtt_WebSocket_Only:
+                            //    return new ITransportSettings[] { new MqttTransportSettings(TransportType.Mqtt_WebSocket_Only) };
+                            //case TransportType.Amqp_WebSocket_Only:
+                            //    return new ITransportSettings[] { new AmqpTransportSettings(TransportType.Amqp_WebSocket_Only) };
                             default:
-                                return new ITransportSettings[] { new AmqpTransportSettings(TransportType.Amqp_Tcp_Only) };
+                                return new ITransportSettings[] { new MqttTransportSettings(TransportType.Mqtt) };
                         }
                     }
 
