@@ -8,6 +8,7 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <Configurations>Debug;Release;CheckInBuild</Configurations>
     <HighEntropyVA>true</HighEntropyVA>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.36.8" />
+    <PackageReference Include="Microsoft.Azure.E4K.IoTHubClient" Version="0.7.22-alpha" />
     <!--
       We have a transitive dependency on System.Net.Http via Microsoft.Azure.Devices.Client.
       Use explicit references here to override the version to fix a vulnerability. See
@@ -33,6 +34,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
   
 </Project>
